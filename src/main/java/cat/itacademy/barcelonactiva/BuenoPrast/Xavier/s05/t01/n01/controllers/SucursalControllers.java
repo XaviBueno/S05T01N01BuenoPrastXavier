@@ -51,29 +51,24 @@ public class SucursalControllers {
 	
 	public String registraSucursal( SucursalDTO sucursal) {
 		
-		sucursalServices.addSucursal(sucursal);
+		sucursalServices.saveSucursal(sucursal);
 		return "redirect:/sucursals/add";
 	}
 
 	@GetMapping("/sucursals/delete/{id}")
 	public String deleteSucursal(Model model,@PathVariable("id") int id){
 		String resp="La sucursal no existeix o hi ha succeït un error ";
-		
+		String redirect="";
 		if(sucursalServices.deleteSucursal(id)) {
 		 resp="Sucursal eliminada";
 		}
 		model.addAttribute("resp", resp);
-		return "resDelete";
+		model.addAttribute("redirect", redirect);
+		return "result";
 	}
 	
 	
-	@PostMapping("/sucursals/delete")
-	public String  esborraSucursal( Integer ident){
-		
-		
-			sucursalServices.deleteSucursal(ident);
-			return "deleteOk";
-	}
+	
 	
 	@GetMapping("/sucursals/getOne/{id}")
 	
@@ -83,6 +78,7 @@ public class SucursalControllers {
 		sucursal=sucursalServices.getOneSucursal(id);
 		if(sucursal!=null) {
 			sucursalDTO=sucursalServices.sucursalToDto(sucursal);
+			
 		}	
 		
 		
@@ -93,11 +89,49 @@ public class SucursalControllers {
 	
 	
 		
+
+		
+	@GetMapping("/sucursals/update")
+	public String inputID(Model model){
+		Integer idSucursal=0;
+		model.addAttribute("idSucursal",  idSucursal);
+		return "inputID";
+		
 	}
-		
-		
-		
 	
+	@PostMapping("/sucursals/update")
+	
+	public String update(Integer idSucursal, Model model) {
+		String form="result";
+		SucursalDTO sucursalDto=new SucursalDTO();
+		Sucursal sucursal= new Sucursal();
+		sucursal= sucursalServices.getOneSucursal(idSucursal);
+		if(sucursal !=null) {
+			sucursalDto= sucursalServices.sucursalToDto(sucursal);
+			model.addAttribute("sucursalDto", sucursalDto);
+			form="update";
+		}
+		else {
+			String resp="Sucursal no existeix";
+			String redirect="/sucursals/update";
+			model.addAttribute("resp", resp);
+			model.addAttribute("redirect", redirect);
+		}
+			
+		return form;
+		
+	}
+	@PostMapping("/sucursals/update/save")
+	
+	public String updateSave(SucursalDTO sucursalDto,Model model) {
+		
+		String resp="Sucursal modificada";
+		String redirect="/sucursals/update";
+		sucursalServices.saveSucursal(sucursalDto);
+		model.addAttribute("resp", resp);
+		model.addAttribute("redirect", redirect);
+		return "result";
+	}
 
 	
 	 class ForceErrorJspController {
@@ -108,4 +142,5 @@ public class SucursalControllers {
 	    }
 	 
 	}
+}
 

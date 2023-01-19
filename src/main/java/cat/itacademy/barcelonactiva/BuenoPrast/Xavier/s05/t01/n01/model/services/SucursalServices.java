@@ -45,7 +45,7 @@ public Sucursal sucursalFromDto(SucursalDTO sucursalDTO) {
 		 
 	}
 
-public Sucursal addSucursal(SucursalDTO sucursal) {
+public Sucursal saveSucursal(SucursalDTO sucursal) {
 	
 		return sucursalRepository.save(sucursalFromDto(sucursal));
 }
@@ -82,6 +82,7 @@ public Sucursal addSucursal(SucursalDTO sucursal) {
 		
 		return  sucursalRepository.findById(id).orElse(null);
 	}
+	
 	
 	
 	
