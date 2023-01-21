@@ -14,7 +14,7 @@ import cat.itacademy.barcelonactiva.BuenoPrast.Xavier.s05.t01.n01.model.domain.S
 import cat.itacademy.barcelonactiva.BuenoPrast.Xavier.s05.t01.n01.model.dto.SucursalDTO;
 
 @Service
-public class SucursalServices {
+public class SucursalServicesClass {
 	
 	@Autowired
 	private SucursalRepository sucursalRepository;
