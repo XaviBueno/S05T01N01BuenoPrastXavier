@@ -2,6 +2,7 @@ package cat.itacademy.barcelonactiva.BuenoPrast.Xavier.s05.t01.n01;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
 @SpringBootApplication
 public class S05T01N01BuenoPrastXavierApplication {

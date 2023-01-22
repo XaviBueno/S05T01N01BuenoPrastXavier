@@ -16,6 +16,9 @@ public interface SucursalService {
 	
 	Sucursal getOneSucursal(int id);
 	
+	Sucursal saveSucursal(SucursalDTO sucursal);
+
+	
 	boolean deleteSucursal(int id);
 
 }

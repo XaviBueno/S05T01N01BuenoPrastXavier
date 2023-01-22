@@ -88,6 +88,10 @@ public class SucursalServicesClass implements SucursalService{
 			return sucursalRepository.save(sucursalFromDto(sucursal));
 	}
 	
-	
+	@Override
+	public Sucursal saveSucursal(SucursalDTO sucursal) {
+		
+			return sucursalRepository.save(sucursalFromDto(sucursal));
+	}
 
 }
