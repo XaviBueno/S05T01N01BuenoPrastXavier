@@ -1,3 +1,4 @@
+//Classe controllers
 package cat.itacademy.barcelonactiva.BuenoPrast.Xavier.s05.t01.n01.controllers;
 
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import cat.itacademy.barcelonactiva.BuenoPrast.Xavier.s05.t01.n01.model.domain.Sucursal;
 import cat.itacademy.barcelonactiva.BuenoPrast.Xavier.s05.t01.n01.model.dto.SucursalDTO;
-import cat.itacademy.barcelonactiva.BuenoPrast.Xavier.s05.t01.n01.model.services.SucursalServices;
+import cat.itacademy.barcelonactiva.BuenoPrast.Xavier.s05.t01.n01.model.services.SucursalServicesClass;
 import jakarta.persistence.Id;
 
 @Controller
@@ -25,7 +26,7 @@ import jakarta.persistence.Id;
 public class SucursalControllers {
 	
 	@Autowired
-	private SucursalServices sucursalServices;
+	private SucursalServicesClass sucursalServices;
 	
 	
  

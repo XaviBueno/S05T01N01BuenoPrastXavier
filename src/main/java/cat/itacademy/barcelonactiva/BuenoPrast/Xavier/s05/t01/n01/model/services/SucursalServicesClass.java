@@ -6,19 +6,18 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-
 import cat.itacademy.barcelonactiva.BuenoPrast.Xavier.s05.t01.n01.model.repository.SucursalRepository;
 import cat.itacademy.barcelonactiva.BuenoPrast.Xavier.s05.t01.n01.model.domain.PaisosUe;
 import cat.itacademy.barcelonactiva.BuenoPrast.Xavier.s05.t01.n01.model.domain.Sucursal;
 import cat.itacademy.barcelonactiva.BuenoPrast.Xavier.s05.t01.n01.model.dto.SucursalDTO;
 
 @Service
-public class SucursalServices {
+public class SucursalServicesClass implements SucursalService{
 	
 	@Autowired
 	private SucursalRepository sucursalRepository;
 	
+	@Override
 	public SucursalDTO sucursalToDto(Sucursal sucursal) {
 		
 		SucursalDTO sucursalDTO=new SucursalDTO();
@@ -32,24 +31,26 @@ public class SucursalServices {
 		 
 	}
 	
-public Sucursal sucursalFromDto(SucursalDTO sucursalDTO) {
+	@Override
+	public Sucursal sucursalFromDto(SucursalDTO sucursalDTO) {
+			
+			Sucursal sucursal=new Sucursal();
+			
+			sucursal.setNomSucursal(sucursalDTO.getNomSucursal());
+			sucursal.setPaisSucursal(sucursalDTO.getPaisSucursal());
+			sucursal.setPk_SucursalID(sucursalDTO.getPk_SucursalID());
+			
+			
+			return sucursal;
+			 
+		}
+	@Override
+	public Sucursal addSucursal(SucursalDTO sucursal) {
 		
-		Sucursal sucursal=new Sucursal();
-		
-		sucursal.setNomSucursal(sucursalDTO.getNomSucursal());
-		sucursal.setPaisSucursal(sucursalDTO.getPaisSucursal());
-		sucursal.setPk_SucursalID(sucursalDTO.getPk_SucursalID());
-		
-		
-		return sucursal;
-		 
+			return sucursalRepository.save(sucursalFromDto(sucursal));
 	}
-
-public Sucursal saveSucursal(SucursalDTO sucursal) {
 	
-		return sucursalRepository.save(sucursalFromDto(sucursal));
-}
-	
+	@Override
 	public List<SucursalDTO> getAllSucursals(){
 		
 		
@@ -66,6 +67,8 @@ public Sucursal saveSucursal(SucursalDTO sucursal) {
 		
 	}
 	
+	
+	@Override
 	public boolean deleteSucursal(int id) {
 		boolean resp=false;
 		if (getOneSucursal( id) !=null) {
@@ -77,12 +80,11 @@ public Sucursal saveSucursal(SucursalDTO sucursal) {
 		
 		
 	} 
-	
+	@Override
 	public Sucursal getOneSucursal(int id) {
 		
 		return  sucursalRepository.findById(id).orElse(null);
 	}
-	
 	
 	
 	
