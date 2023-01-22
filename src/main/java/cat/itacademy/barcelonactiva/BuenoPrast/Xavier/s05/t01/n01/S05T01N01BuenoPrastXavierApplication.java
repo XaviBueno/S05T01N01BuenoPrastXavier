@@ -8,6 +8,7 @@ public class S05T01N01BuenoPrastXavierApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(S05T01N01BuenoPrastXavierApplication.class, args);
+		System.out.println("Aplicació en marxa");
 	}
 
 }
