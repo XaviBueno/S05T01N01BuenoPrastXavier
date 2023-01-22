@@ -44,11 +44,7 @@ public class SucursalServicesClass implements SucursalService{
 			return sucursal;
 			 
 		}
-	@Override
-	public Sucursal addSucursal(SucursalDTO sucursal) {
-		
-			return sucursalRepository.save(sucursalFromDto(sucursal));
-	}
+	
 	
 	@Override
 	public List<SucursalDTO> getAllSucursals(){
@@ -85,7 +81,12 @@ public class SucursalServicesClass implements SucursalService{
 		
 		return  sucursalRepository.findById(id).orElse(null);
 	}
-	
+
+	@Override
+	public Sucursal addSucursal(SucursalDTO sucursal) {
+		
+			return sucursalRepository.save(sucursalFromDto(sucursal));
+	}
 	
 	
 
